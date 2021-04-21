@@ -48,7 +48,7 @@ const Header = () => (
   <Navbar>
     <StyledButton text={"Home"} />
     <StyledButton text={"Merch"} />
-    <StyledTitle text={"Shit"} />
+    <StyledTitle text={"Products!!!"} />
     <StyledSearch placeholder={"Search"}/>
   </Navbar>
 )

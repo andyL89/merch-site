@@ -12,26 +12,26 @@ function NewProductForm(props) {
                               id: v4()});
   }
   return (
-    <React.Fragment>
+    <>
       <form onSubmit={handleNewProductFormSubmission}>
         <input
           type = 'text'
           name = 'name'
           placeholder = 'Product Name' />
         <input
-          type = 'currency'
+          type = 'text'
           name = 'price'
           placeholder = 'Price' />
         <textarea
           name = 'description'
           placeholder = 'Product Description'/>
         <input
-          type = 'number'
+          type = 'text'
           name = 'quantity'
           placeholder = 'Quantity' />
         <button type='submit'>Add Product</button>
       </form>
-    </React.Fragment>
+    </>
   );
 }
 
