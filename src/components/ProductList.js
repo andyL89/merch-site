@@ -8,7 +8,6 @@ function ProductList(props){
       {props.productList.map((product) =>
         <Product
           whenProductClicked = { props.onProductSelection }
-          // whenProductRestocking = {props.onRestockingProduct}
           name={product.name}
           price={product.price}
           description={product.description}
