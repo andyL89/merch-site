@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 function ProductDetail(props){
-  const { product, onClickingDelete } = props;
+  const { product, onClickingBuy, onClickingRestock, onClickingDelete } = props;
 
   return (
     <>
@@ -10,7 +10,14 @@ function ProductDetail(props){
       <h3>{product.name}</h3>
       <p>{product.price}</p>
       <p>{product.description}</p>
-      <p>{product.quantity}</p>
+      <p>Current Stock: {product.quantity}</p>
+      {product.quantity > 0 &&
+        <button onClick={()=> onClickingBuy(product.id) }>Buy</button>
+      }
+      {product.quantity === 0 &&
+        <h1>SOLD OUT, BROS!</h1>
+      }
+      <button onClick={()=> onClickingRestock(product.id) }>Restock</button>
       <button onClick={()=> onClickingDelete(product.id)}>Delete Product</button>
     </>
   );
@@ -18,8 +25,9 @@ function ProductDetail(props){
 
 ProductDetail.propTypes = {
   product: PropTypes.object,
-  onClickingDelete: PropTypes.func
+  onClickingDelete: PropTypes.func,
+  onClickingRestock: PropTypes.func,
+  onClickingBuy: PropTypes.func
 };
 
 export default ProductDetail;
-

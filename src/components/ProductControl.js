@@ -17,7 +17,7 @@ class ProductControl extends React.Component {
     if (this.state.selectedProduct != null) {
       this.setState({
         formVisibleOnPage: false,
-        selectedProduct: null
+        selectedProduct: null,
       });
     } else {
       this.setState(prevState => ({
@@ -26,18 +26,24 @@ class ProductControl extends React.Component {
     }
   }
 
-  // handleBuyingProduct = (product) => {
-  //   const newQuantity = this.quantity - 1;
-  //   this.setState({quantity: newQuantity})
-  // }
 
-  // handleRestockingProduct = (id) => {
-  //   const selectedProduct = this.state.masterProductList.filter(product => product.id === id)[0];
-  //   if (selectedProduct) {
-  //     const newQuantity = (parseInt(selectedProduct.quantity) + 1).toString;
-  //     selectedProduct.setState({quantity: newQuantity})
-  //   }
-  // }
+  handleRestockingProduct = (id) => {
+    const chosenProduct = this.state.masterProductList.filter(product => product.id === id)[0];
+    if (chosenProduct) {
+      const newQuantity = (parseInt(chosenProduct.quantity) + 1);
+      chosenProduct.quantity = newQuantity
+      this.setState({selectedProduct: chosenProduct})
+    }
+  }
+
+  handleBuyingProduct = (id) => {
+    const chosenProduct = this.state.masterProductList.filter(product => product.id === id)[0];
+    if (chosenProduct) {
+      const newQuantity = (parseInt(chosenProduct.quantity) - 1);
+      chosenProduct.quantity = newQuantity
+      this.setState({selectedProduct: chosenProduct})
+    }
+  }
 
   handleAddingNewProductToList = (newProduct) => {
     const newMasterProductList = this.state.masterProductList.concat(newProduct);
@@ -63,7 +69,7 @@ class ProductControl extends React.Component {
     let buttonText = null;
 
     if (this.state.selectedProduct != null) {
-      currentlyVisibleState = <ProductDetail product = {this.state.selectedProduct} onClickingDelete = {this.handleDeletingProduct}/>
+      currentlyVisibleState = <ProductDetail product = {this.state.selectedProduct} onClickingDelete = {this.handleDeletingProduct} onClickingRestock = {this.handleRestockingProduct} onClickingBuy = { this.handleBuyingProduct }/>
       buttonText = "Return to Product List";
     }
     else if (this.state.formVisibleOnPage) {
